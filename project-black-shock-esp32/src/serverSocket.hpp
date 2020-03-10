@@ -1,3 +1,4 @@
+#include <WiFi.h>
 #include <ArduinoWebsockets.h>
 
 const char *ssid = "Black Shock";
