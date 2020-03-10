@@ -1,28 +1,24 @@
 #include <Arduino.h>
-#include "ServerSocket.h"
+#include <stdio.h>
+#include "driver/gpio.h"
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+#include "esp_spi_flash.h"
+#include "serverSocket.hpp"
 
-void setup()
+gpio_num_t pin1 = (gpio_num_t)2;
+
+extern "C" void app_main()
 {
-  // put your setup code here, to run once:
-  Serial.begin(115200);
-
-  pinMode(led, OUTPUT);
-
-  WiFi.begin(ssid, password);
-
-  while (WiFi.status() != WL_CONNECTED)
+  gpio_pad_select_gpio(pin1);
+  gpio_set_direction(pin1, (gpio_mode_t)GPIO_MODE_DEF_OUTPUT);
+  printf("Hello World!\n");
+  while (1)
   {
-    Serial.print(".");
-    delay(1000);
+    printf("test");
+    gpio_set_level(pin1, 0);
+    vTaskDelay(1000 / portTICK_PERIOD_MS);
+    gpio_set_level(pin1, 1);
+    vTaskDelay(1000 / portTICK_PERIOD_MS);
   }
-
-  Serial.println("Connected to Wifi, Connecting to server.");
-
-  bool connected = client.
-}
-
-void loop()
-{
-  // put your main code here, to run repeatedly:
-
 }
