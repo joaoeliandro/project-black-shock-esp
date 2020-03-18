@@ -4,7 +4,7 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "esp_spi_flash.h"
-#include "serverSocket.hpp"
+#include "serverSocket.h"
 
 void setup()
 {
